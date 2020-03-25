@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>Blog</title>
-    <updated>2020-03-25T14:27:27.419Z</updated>
+    <updated>2020-03-25T14:53:29.164Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -30,7 +30,9 @@
 <img src="https://codermakers.github.io//post-images/1585145816112.png" alt="" loading="lazy"></li>
 </ul>
 </li>
-<li>2.3 下载Gridea客户端，并打开，填写远程连接配置</li>
+<li>2.3 下载Gridea客户端，并打开，填写远程连接配置<br>
+<img src="https://codermakers.github.io//post-images/1585147614248.png" alt="" loading="lazy"></li>
+<li>2.4 确认连接成功,勾选编辑好的文章，点击<code>同步</code>，同步成功,进入仓库,刷新网页,打开https://userName.github.io查看博客</li>
 </ul>
 ]]></content>
     </entry>
