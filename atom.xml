@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>Blog</title>
-    <updated>2020-03-25T13:56:05.783Z</updated>
+    <updated>2020-03-25T14:27:16.908Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -11,39 +11,27 @@
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Blog</rights>
     <entry>
-        <title type="html"><![CDATA[# Gridea+Github Pages/Conding Pages搭建个人静态博客]]></title>
+        <title type="html"><![CDATA[ Gridea+Github Pages/Conding Pages搭建个人静态博客]]></title>
         <id>https://codermakers.github.io/post/grideagithub-pagesconding/</id>
         <link href="https://codermakers.github.io/post/grideagithub-pagesconding/">
         </link>
         <updated>2020-03-25T13:21:37.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="一-gridea简单介绍">一、Gridea简单介绍</h3>
-<p>Gridea 是一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点</p>
-<h3 id="二-gridea结合github-pages详细搭建个人博客详细步骤">二、Gridea结合Github Pages详细搭建个人博客详细步骤</h3>
-<ul>
-<li>
-<p>2.1 新建仓库<br>
-<img src="https://codermakers.github.io//post-images/1585143748317.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p>2.2</p>
-</li>
-<li></li>
-</ul>
-]]></summary>
         <content type="html"><![CDATA[<h3 id="一-gridea简单介绍">一、Gridea简单介绍</h3>
 <p>Gridea 是一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点</p>
 <h3 id="二-gridea结合github-pages详细搭建个人博客详细步骤">二、Gridea结合Github Pages详细搭建个人博客详细步骤</h3>
 <ul>
-<li>
-<p>2.1 新建仓库<br>
-<img src="https://codermakers.github.io//post-images/1585143748317.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p>2.2</p>
-</li>
-<li></li>
+<li>2.1 新建仓库.<br>
+<img src="https://codermakers.github.io//post-images/1585143748317.png" alt="" loading="lazy"></li>
+<li>2.2  生成repo所需的token,并保存到本地.
+<ul>
+<li>2.2.1 点击个人设置下&quot;开发者设置&quot;，勾选&quot;Generate new token&quot;<br>
+<img src="https://codermakers.github.io//post-images/1585146059324.png" alt="" loading="lazy"></li>
+<li>2.2.2 填写token的用途,勾选仓库相关权限,将生成的token复制本地，保存起来，一旦关闭网页，将不再可见。<br>
+<img src="https://codermakers.github.io//post-images/1585145816112.png" alt="" loading="lazy"></li>
 </ul>
-<!-- more -->
+</li>
+<li>2.3 下载Gridea客户端，并打开，填写远程连接配置</li>
+</ul>
 ]]></content>
     </entry>
 </feed>
