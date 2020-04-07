@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-06T15:20:04.594Z</updated>
+    <updated>2020-04-07T11:32:50.620Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -17,48 +17,59 @@
         </link>
         <updated>2020-03-25T13:21:37.000Z</updated>
         <content type="html"><![CDATA[<h3 id="一-github-pages-gridea的简明介绍">一、Github Pages、Gridea的简明介绍</h3>
-<pre><code>Github Pages 是GitHub提供的一项功能，允许用户以个人或者组织站点创建创建一个静态网站，但Github Pages本身提供的主题很少且单一，而Gridea一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点，主题很好。
+<pre><code class="language-js">  Github Pages 是GitHub提供的一项功能，允许用户以个人或者组织站点创建创建一个静态网站，但Github Pages本身提供的主题很少且单一，而Gridea一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点，主题很好。同类型的Hexo等工具操作略显复杂。
 </code></pre>
-<h3 id="一-gridea简单介绍">一、Gridea简单介绍</h3>
-<p>Gridea 是一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点</p>
-<h3 id="二-gridea结合github-pages详细搭建个人博客详细步骤">二、Gridea结合Github Pages详细搭建个人博客详细步骤</h3>
+<h3 id="二-开始搭建个人博客之旅">二、开始搭建个人博客之旅</h3>
 <ul>
-<li>2.1 新建仓库.<br>
-<img src="https://codermakers.github.io//post-images/1585143748317.png" alt="" loading="lazy"></li>
-<li>2.2  生成repo所需的token,并保存到本地.
+<li>2.1 新建仓库<br>
+<img src="https://codermakers.github.io//post-images/1586187298663.png" alt="" loading="lazy"></li>
+</ul>
+<pre><code class="language-js">注意点：
+     1、新建的仓库名必须是username.github.io(个人)
+     2、仓库必须是public,否则只能自己访问
+</code></pre>
 <ul>
-<li>2.2.1 点击个人设置下&quot;开发者设置&quot;，勾选&quot;Generate new token&quot;<br>
-<img src="https://codermakers.github.io//post-images/1585146059324.png" alt="" loading="lazy"></li>
-<li>2.2.2 填写token的用途,勾选仓库相关权限,将生成的token复制本地，保存起来，一旦关闭网页，将不再可见。<br>
-<img src="https://codermakers.github.io//post-images/1585145816112.png" alt="" loading="lazy"></li>
+<li>2.2 生成token令牌（用于Gridea和github远程仓库进行连接）<br>
+<img src="https://codermakers.github.io//post-images/1586187857234.png" alt="" loading="lazy"></li>
 </ul>
-</li>
-<li>2.3 下载Gridea客户端，并打开，填写远程连接配置<br>
-<img src="https://codermakers.github.io//post-images/1585147614248.png" alt="" loading="lazy"></li>
-<li>2.4 确认连接成功,勾选编辑好的文章，点击<code>同步</code>,进行本地和远程同步<br>
-<img src="https://codermakers.github.io//post-images/1585148650387.png" alt="" loading="lazy"></li>
-<li>2.5 同步成功,进入仓库,刷新网页,点击“预览”会在本地<code>http://localhost:4000/archives/</code>看到自己的博客，在地址栏<code>https://codermakers.github.io</code>查看远程博客</li>
-</ul>
-<h3 id="三-在gridea客户端上进行自定义配置个人博客">三、在Gridea客户端上进行自定义配置个人博客</h3>
+<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1586187781974.png" alt="" loading="lazy"></figure>
+<pre><code class="language-js">注意点：
+   1、点击个人头像setting，进入Developer settings,选择Personal access tokens,点击Generate token即可生成。
+   2、复制个人token到本地，只会开启一次，注意保存。之后勾选个人repo权限即可
+</code></pre>
 <ul>
-<li>3.1 打开客户端，选择<code>主题</code>进行自定义配置
-<ul>
-<li>基础配置：可选择主题,设置网站名称,描述，底部信息等</li>
-<li>自定义配置:可设置左侧菜单栏宽度，颜色,自定义样式、谷歌统计</li>
-<li>网站图标配置:自定义favicon.ico</li>
-<li>头像设置：上传自己的头像</li>
+<li>2.3 下载Gridea客户端进行连接设置<br>
+<img src="https://codermakers.github.io//post-images/1586188413134.png" alt="" loading="lazy"></li>
 </ul>
-</li>
-<li>3.2 安装别人分享的主题</li>
-</ul>
-<h3 id="四-gridea书写博客文章">四、Gridea书写博客文章</h3>
-<ul>
-<li>4.1 markdown书写文章：书写版块介绍<br>
-<img src="https://codermakers.github.io//post-images/1585153567997.png" alt="" loading="lazy"></li>
-<li>4.2 文章设置:<br>
-<img src="https://codermakers.github.io//post-images/1585154069589.png" alt="" loading="lazy"></li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1585154151911.png" alt="" loading="lazy"></figure>
+<pre><code class="language-js">注意点：
+     1、填写token令牌，点击“检测远程连接”,出现连接成功即可。
+     2、填写完毕，一定要保存，切记。
+</code></pre>
+<h3 id="三-gridea配置个人博客主题">三、Gridea配置个人博客主题</h3>
+<pre><code class="language-js">   Gridea的主题大多免费,除个别收费，就6块钱，看中哪个主题,直接点到主题的github主页，看安装
+方法即可,一般是到release下下载最新的版本解压缩到Gridea站点源文件theme文件夹下。之后Gridea重启软件即可。
+</code></pre>
+<p><img src="https://codermakers.github.io//post-images/1586256910537.png" alt="" loading="lazy"><br>
+<img src="https://codermakers.github.io//post-images/1586256941017.png" alt="" loading="lazy"></p>
+<pre><code class="language-js">注意点：
+     1、点击主题，选择更多主题，看到心意的主题下即可。
+     2、有时候主题可能不生效，多重启几遍
+</code></pre>
+<h3 id="四-gridea撰写个人博客">四、Gridea撰写个人博客</h3>
+<pre><code class="language-js">   撰写博客一定要注意：分类，支持makedown语法,写完之后，点击同步即可，Ctr+P随时预览效果，这里介绍一下&quot;列表中隐藏&quot;功能。勾选一下，如果此时文章没有编写完毕，即使保存，点击同步也不会被发布到远程。同时文章列表中的文章会被Hide字眼标识。写完之后，记得取消。
+</code></pre>
+<p><img src="https://codermakers.github.io//post-images/1586258346407.png" alt="" loading="lazy"><br>
+<img src="https://codermakers.github.io//post-images/1586258354570.png" alt="" loading="lazy"></p>
+<pre><code class="language-js">注意点：
+     1、文章写完，一定要注意随时保存。
+     2、点击预览,会在本地http://localhost:4000/archives/，点击同步，会在http://codermakers.github.io 看到自己发布的文章，如果没同步，多试几次。
+</code></pre>
+<h3 id="五-参考链接">五、参考链接</h3>
+<pre><code class="language-js">1、GitHub Pages介绍 ：https://pages.github.com/
+2、Gridea 官网详细配置：https://gridea.dev/gridea-start/
+3、Suremotoo(B站用户)B站实操视频：：https://www.bilibili.com/video/BV1W4411H7zS
+4、文章只记录主要步骤，次要配置看自己喜好配置。
+</code></pre>
 ]]></content>
     </entry>
 </feed>
