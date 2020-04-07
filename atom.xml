@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-07T14:29:28.243Z</updated>
+    <updated>2020-04-07T16:10:50.784Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -10,6 +10,149 @@
     <logo>https://codermakers.github.io/images/avatar.png</logo>
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CoderMakers</rights>
+    <entry>
+        <title type="html"><![CDATA[JS中this的最终指向阐述]]></title>
+        <id>https://codermakers.github.io/post/js-zhong-this-de-zui-zhong-zhi-xiang-chan-shu/</id>
+        <link href="https://codermakers.github.io/post/js-zhong-this-de-zui-zhong-zhi-xiang-chan-shu/">
+        </link>
+        <updated>2020-04-07T14:32:01.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="一-this的指向分类">一、This的指向分类</h3>
+<pre><code class="language-js">-1、全局环境下
+    无论是否在严格模式下，在全局执行环境中（在任何函数体外部）this 都指向全局对象window。
+-2、函数环境下
+    在函数内部，this的值取决于函数被调用的方式。this-&gt;执行环境（execution context)对象(非严格模式下,strict模式下,没有EC概念)
+</code></pre>
+<h3 id="二-细说各种情况下的this指向问题">二、细说各种情况下的This指向问题</h3>
+<ul>
+<li>2.1 对象打点调用自身方法,this指向该对象</li>
+</ul>
+<pre><code class="language-js">var people = {
+  sayHi() {
+    conose.log(this); //this --&gt;people
+  }
+};
+people.sayHi();
+</code></pre>
+<p>-2.2 DOM绑定事件函数中的this，this指向该DOM对象,本质是隶属于2.1</p>
+<pre><code class="language-js">  document.getElementById(&quot;btn&quot;).onclick = function(e){
+     console.log(this)   //this--&gt;document.getElementById(&quot;btn&quot;)
+  }
+  //理解：本身DOM对象下的onclick方法调用
+</code></pre>
+<p>-2.3 定时器中的callback中的this，this指向window</p>
+<pre><code class="language-js">window.setInterval(function() {
+    console.log(this);
+}, 1000);
+window.setTimeout(function() {
+    console.log(this);
+}, 1000);
+
+//换种写法
+function callback(){
+   console.log(this);
+}
+window.setInterval(callback, 1000);
+window.setTimeout(callback, 1000);
+//理解：setInterval还是setTimeout都是window下的方法，其中的callback也指向window
+</code></pre>
+<p>-2.4 数组迭代方法中的callback中的this,this指向window</p>
+<pre><code class="language-js">//迭代方法
+   - forEach(callback)
+   - map(callback)
+   - filter(callback)
+   - every(callback)
+   - some(callback)
+// 以map为例，callback(迭代器)可以函数名放在全局环境，所以是window；
+
+function evenFn(v,i){
+   console.log(this) // this-&gt;window
+   return v*2
+}
+[1,2,3,4].map(evenFn);
+
+//或者
+[1,2,3,4].map(v=&gt;v*2)
+</code></pre>
+<p>-2.5 使用 new 操作符实例化的对象, 构造函数中的this, 原型上方法中的 this,默认指向该实例</p>
+<pre><code class="language-js">function Cat(name, age) {
+  this.name = name;
+  this.age = age;
+  this.play = function() {
+    console.log(this);
+  };
+}
+Cat.prototype.run = function() {
+  console.log(this); //this--&gt;利用构造函数new出的实例对象
+};
+
+let Kimi = new Cat(&quot;Kimi&quot;, 3);
+Kimi.play();
+Kimi.run();
+</code></pre>
+<ul>
+<li>2.6 箭头函数中的this,this指向父级环境对象</li>
+</ul>
+<pre><code class="language-js">var obj = {
+  name:'Kimi',
+  run:()=&gt;{
+    console.log(this) //this --&gt;window
+  }
+}
+obj.run()
+//理解:箭头函数中没有this,会找父级环境中的this.
+</code></pre>
+<h3 id="三-javascript中如何修改this">三、JavaScript中如何修改this?</h3>
+<pre><code class="language-js">function print(){
+  console.log('name:' + this.name);
+  console.log(arguments)
+}
+var obj = {
+  name:'Jack',
+  age:18
+}
+//调用call
+print.call(obj,1,2,3)  // -&gt;逐个传参
+//调用apply
+print.apply(obj,[1,2,3]) //类数组或者数组传参
+
+// bind绑定this,返回一个函数，必须加()执行
+print.bind(obj,[1,2,3])()   //传参形式无限制
+/* 
+ * 1、 Js中使用bind,call,apply方法可以手动修改this指向,都采用后续传参的形式.
+ * 2、区别：
+      1、call的传参是单个传递的，而 apply后续传递的参数是(或类数组)数组形式，arguments都是逐个参数的形式,而 bind没有规定，可以传各种值，对象，数组，基本值.
+      2、call和 apply函数的执行是直接执行的，而 bind函数会返回一个函数，然后我们想要()调用的时候才会执行。
+*/
+</code></pre>
+<h3 id="四-项目中如何使用this">四、项目中如何使用this?</h3>
+<ul>
+<li>4.1 保存当前环境对象</li>
+</ul>
+<pre><code class="language-js">//常以that、_that、_self、context等变量保存this
+oBtn.addEventListener(&quot;click&quot;, function() {
+  let _self = this; //保存this
+  setTimeout(function() {
+    alert(_self.innerHTML);
+  }, timeout);
+});
+
+</code></pre>
+<ul>
+<li>4.2 作为返回值返回</li>
+</ul>
+<pre><code class="language-js">var tools = {
+  fnA() {
+    return this;
+  },
+  fnB() {
+    return this;
+  }
+  // ...
+};
+tools.fnA().fnB(); //链式调用
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[一张图看懂FLex布局]]></title>
         <id>https://codermakers.github.io/post/yi-zhang-tu-kan-dong-flex-bu-ju/</id>
@@ -49,10 +192,10 @@
 <pre><code class="language-css">.box-flex{
   display: flex; 
 }
-flex-1{
+.flex-1{
   flex:1
 }
-box-align-center{
+.box-align-center{
   display: flex;  justify-content: center; align-items: center; 
 }
 </code></pre>
