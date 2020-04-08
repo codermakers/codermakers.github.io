@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-08T11:56:59.967Z</updated>
+    <updated>2020-04-08T15:55:35.048Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -10,6 +10,26 @@
     <logo>https://codermakers.github.io/images/avatar.png</logo>
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CoderMakers</rights>
+    <entry>
+        <title type="html"><![CDATA[Hold Git,告别SVN]]></title>
+        <id>https://codermakers.github.io/post/hold-gitgao-bie-svn/</id>
+        <link href="https://codermakers.github.io/post/hold-gitgao-bie-svn/">
+        </link>
+        <updated>2020-04-08T13:08:16.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="一-git-introduction">一、Git Introduction</h3>
+<p>1.1、 Git是一个免费的开源 分布式版本控制软件，主要用于管控项目。操作Git一般有2种方式：Git Bash命令行操作，或者Git GUI工具进行操作，其中最优秀的2款工具是TortoiseGit(小乌龟)和SourceTree(更强大)。之后会详细讲解如何使用。<br>
+1.2、同时衍生除了很多基于GIt的代码托管平台，如GitHub(国外,现被微软收购)、Gitee(码云国内)、Conding(腾讯代理)、GitLab(企业常用)。</p>
+<h3 id="二-git的三个区workingstaging-local-重点理解">二、 Git的三个区（working,staging、local）-&gt;重点理解</h3>
+<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1586359975349.png" alt="" loading="lazy"></figure>
+<p>2.1、 Workspace：工作区：即项目所在的文件夹<br>
+2.2、 Index / Stage：暂存区：简单理解为.git文件下的Index文件<br>
+2.3、 Repository：仓库区（或本地仓库):本地的版本库,简单理解为.git文件夹<br>
+2.4、 Remote：远程仓库</p>
+<h3 id="三-图解git-命令清单">三、图解Git 命令清单</h3>
+<p><img src="https://codermakers.github.io//post-images/1586361247568.jpg" alt="" loading="lazy"><br>
+<img src="https://codermakers.github.io//post-images/1586361256343.jpg" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[一张图Hold住Grid网格布局]]></title>
         <id>https://codermakers.github.io/post/yi-zhang-tu-hold-zhu-grid-wang-ge-bu-ju/</id>
