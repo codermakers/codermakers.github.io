@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-08T06:53:00.837Z</updated>
+    <updated>2020-04-08T07:09:23.900Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -10,6 +10,597 @@
     <logo>https://codermakers.github.io/images/avatar.png</logo>
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CoderMakers</rights>
+    <entry>
+        <title type="html"><![CDATA[Vuex全解析]]></title>
+        <id>https://codermakers.github.io/post/vuex-quan-jie-xi/</id>
+        <link href="https://codermakers.github.io/post/vuex-quan-jie-xi/">
+        </link>
+        <updated>2020-04-08T06:54:26.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="一-vuex的简明释义">一、Vuex的简明释义</h3>
+<pre><code class="language-js">1、Vuex是Vue的一个插件,全局状态管理器
+2、Vuex主要解决`多个组件共享状态,组件跨级传参,组件外部管理状态`问题
+3、页面刷新，数据丢失，状态不能维持,需要持久化存储方案,可通过本地存储localstorage或者相关的vuex持久化插件vuex-persistedstate,vue-savedata等解决。
+4、根据需要选择使用Vuex,使用Vue-detools进行vuex调试。
+</code></pre>
+<h3 id="二-vuex的核心5个对象">二、Vuex的核心5个对象</h3>
+<ul>
+<li>2.1 概括</li>
+</ul>
+<pre><code class="language-js">1、state  -&gt;状态,相当于中央仓库中的数据。
+2、getters -&gt;相当于state的计算属性，依赖于state. 
+3、mutation -&gt;相当于直接修改state的method方法,里面不允许异步操作，如果需要需要异步操作，直接利用action去触发mutation，更改state。
+4、action -&gt;相当于mutation的附加函数，允许异步操作，然后提交mutation 
+5、module-&gt;当项目应用vuex进行状态管理,随着项目越大,store中配置项，state、getters等会变得很大，不易管理，可用module对象进行分模块管理。各个模块维护自己的state,getters等配置项。
+</code></pre>
+<ul>
+<li>2.2 state 详述</li>
+</ul>
+<pre><code class="language-js">[摘要]：
+1、自store实例注册在根实例中,其中state,getters的数据在任意组件可通过this.$store.state.XX或者this.$store.getters.XXX获取。
+2、为了编码整洁，一般在组件内部利用computed进行局部映射,再利用{{}}在template进行书写。
+3、利用mapState和mapGetters辅助函数简化写法。
+-------------------------------------------------------------------------
+1)、基本使用
+&lt;template&gt;
+  &lt;div&gt;{{count}}&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    computed: {
+      count() {
+        return this.$store.state.count;
+      }
+    }
+  };
+&lt;/script&gt;
+
+2）通过mapState辅助函数简化代码 -1 传入对象
+&lt;script&gt;
+  import { mapState } from &quot;vuex&quot;;
+  export default {
+    computed: mapState({
+      count: state =&gt; state.count //导致组件本地计算属性不可用
+    })
+  };
+&lt;/script&gt;
+-2 计算属性和state同名,可传入['字符串']进行映射
+&lt;script&gt;
+  import { mapState } from &quot;vuex&quot;;
+  export default {
+    computed: mapState([&quot;count&quot;]) //组件本地计算属性仍不可用
+  };
+&lt;/script&gt;
+
+-3 使用...解决本地计算属性和映射的计算属性共存
+&lt;script&gt;
+  import { mapState } from &quot;vuex&quot;;
+  export default {
+    localComputed() {
+      /*本地计算属性*/
+    },
+    ...mapState([&quot;count&quot;])
+  };
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>2.3 getters 详述(计算属性:缓存特性)</li>
+</ul>
+<pre><code class="language-js">1)基本使用
+当store注入APP组件,其中组件可根据`this.$store.getters.xxxx`获取对应的getters，
+组件中通常通过`计算属性`进行返回，最终{{}},反映在在template模板中。 - index.js
+
+&lt;script&gt;
+  const store = new Vuex.Store({
+    state: {
+      count: 0
+    },
+    getters: {
+      doubleCount: state =&gt; state * 2
+    }
+  });
+&lt;/script&gt;
+
+-ComA.vue组件
+
+&lt;template&gt;
+  &lt;div&gt;{{doubleCount}}&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import { mapState } from &quot;vuex&quot;;
+  export default {
+    computed: {
+      doubleCount() {
+        return this.$store.getters.doubleCount;
+      }
+    }
+  };
+&lt;/script&gt;
+
+2)getters默认接受state,和其他getters参数,也可返回函数,调用时,不缓存结果.
+
+&lt;script&gt;
+  const store = new Vuex.Store({
+    state: {
+      todos: [
+        { id: 1, text: &quot;...&quot;, done: true },
+        { id: 2, text: &quot;...&quot;, done: false }
+      ]
+    },
+    getters: {
+      doneTodos: state =&gt; state.todos.filter(todo =&gt; todo.done), //筛选完成的todos
+      doneTodosCount: (state, getters) =&gt; getters.doneTodos.length, //筛选完成的todo的条目数
+      getTodoById: state =&gt; id =&gt; state.todos.find(todo =&gt; todo.id === id) //查询时有用,每次store.gtters.getTodoById(2) 方法调用,不会缓存结果
+    }
+  });
+&lt;/script&gt;
+
+2)通过mapGetters辅助函数,简化代码,映射
+&lt;script&gt;
+  import { mapGetters } from &quot;vuex&quot;;
+
+  export default {
+    // ...
+    computed: {
+      // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters([
+        &quot;doneTodos&quot;
+        &quot;doneTodosCount&quot;,
+        // ...
+      ])
+    }
+  };
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>2.4 mutations(变更 state 的唯一方法)-&gt;[commit 触发]</li>
+</ul>
+<pre><code class="language-js">1)基本使用:直接commit触发
+&lt;script&gt;
+  const store = new Vuex.Store({
+    state: {
+      count: 0;
+    },
+    mutations: {
+      increase(state, n) {
+        // 变更状态
+        state.count += n;
+      }
+    },
+    actions: {
+      increaseAction({ commit }, n) {
+        commit(&quot;increase&quot;, n);
+      }
+    }
+  });
+&lt;/script&gt;
+- commit触发
+&lt;template&gt;
+  &lt;button @click=&quot;addCount(5)&quot;&gt;&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    methods: {
+      addCount(n) {
+        this.$store.commit(&quot;increase&quot;, n);
+      }
+    }
+  };
+&lt;/script&gt;
+
+2)通过mapMutations辅助函数简化代码
+&lt;script&gt;
+  import { mapMutations } from &quot;vuex&quot;;
+  export default {
+    // ...
+    methods: {
+      // 传数组,方法名和mutation同名,推荐这个
+      ...mapMutations([
+        &quot;increase&quot; // 将 `this.increase()` 映射为 `this.$store.commit('increase')`
+      ]),
+      // 传对象,方法名和mutation不同名,推荐传对象。
+      ...mapMutations({
+        addCount: &quot;increase&quot; // 将 `this.addCount()` 映射为 `this.$store.commit('increment')`
+      })
+    }
+  };
+&lt;/script&gt;
+3)通过触发action，间接提交mutation(dispatch),稍后细讲。
+&lt;script&gt;
+  export default {
+    methods: {
+      addCount(n) {
+        this.$store.dispatch(&quot;increaseAction&quot;, n);
+      }
+    }
+  };
+&lt;/script&gt;
+4)Vuex 中的mutation同event类似,每次提交Mutation实际是{type:'eventName',payload:'载荷'}的传递。
+
+//项目实际上传递payload不会是计数器这么简单,一个字符串或者一个数字,往往是一个对象。
+// store.js
+export default new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increase(state, n) {
+      state.count += n;
+    }
+  },
+  actions: {
+    increaseAction({ commit }, payload) {
+      setTimeout(() =&gt; {
+        commit(&quot;increase&quot;, payload.amount);
+      }, payload.duration);
+    }
+  }
+});
+
+//Home.vue 按钮button触发
+&lt;button @click=&quot;addCount({ amount:10,duration:1000})&quot;&gt;加10&lt;/button&gt;
+
+&lt;script&gt;
+import { mapActions } from &quot;vuex&quot;;
+export default {
+  name: &quot;Home&quot;,
+  data() {
+    return {};
+  },
+  computed: {
+    count() {
+      return this.$store.state.count;
+    }
+  },
+  methods: {
+    ...mapActions({
+      addCount: &quot;increaseAction&quot;
+    })
+  }
+};
+&lt;/script&gt;
+5)提交mutation的风格:载荷形式提交,对象形式提交
+&lt;button @click=&quot;addCount&quot;&gt;加10&lt;/button&gt;
+
+//5.1载荷形式提交
+ this.$store.commit(&quot;increase&quot;, { by: 10 });
+ 
+//5.2 对象形式提交:Payload ==&gt; {type: &quot;increase&quot;, by: 10}
+ this.$store.commit({
+    type: &quot;increase&quot;,
+    by: 10
+ });
+
+//store.js
+ mutations: {
+   increase(state, payload) {
+    state.count += payload.by;
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>2.5 Action(行为)-&gt;主要用来异步获取数据，再提交 mutation</li>
+</ul>
+<pre><code class="language-js">/*
+ 1、action提交的是mutation,不是直接变state,
+ 2、Action 可以包含任意异步操作。
+ 3、Action中可以使用promise与async await
+*/
+//store.js
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+    increment (context){
+      console.log(context);
+      context.commit('increment')
+    }
+  }
+})
+//Home.vue 按钮button触发,控制台打印this.$store对比store实例和context对象
+
+//store实例
+let store = {
+  commit:() =&gt;{},
+  dispatch:()=&gt;{},
+  getters:{},
+  state:{},
+  ....
+}
+//context对象
+var context = {
+  commit:() =&gt;{},
+  dispatch:()=&gt;{},
+  getters: {}
+  rootGetters: {}
+  rootState: {}
+  state: {}  
+}
+
+//1、由上可知,context和store两者并非完全相同,根据对象解构，在module模块中,将state,rootState,commit...结构出来,书写以及对该模块的管理将非常有
+
+//2、action支持promise和async 和await
+ //返回promise
+actions: {
+  actionA ({ commit }) {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; {
+        commit('someMutation')
+        resolve()
+      }, 1000)
+    })
+  }
+}
+
+//async 和await组合action,假设 getData() 和 getOtherData() 返回的是 Promise
+
+actions: {
+  async actionA ({ commit }) {
+    commit('gotData', await getData())
+  },
+  async actionB ({ dispatch, commit }) {
+    await dispatch('actionA') // 等待 actionA 完成
+    commit('gotOtherData', await getOtherData())
+  }
+}
+- 2.6 modules(模块管理)
+```js
+/*
+ 1、如果项目足够大,Vuex实例化的store实例会变得很大,所以modules的出现就是为了解决这个问题。
+ 2、每个模块中都有自己的state,getters,mutation,action。
+ 3、在这几个对象中模块内部的 action、mutation 和 getter 是注册在全局命名空间,而state是模块自己私有的。下面以例子说明
+*/
+//modules/moduleA.js
+export default {
+  state: {
+    value: 1
+  },
+  getters: {
+    doubleValue: state =&gt; state.value * 2
+  },
+  mutations: {
+    increaseA(state, getters, rootState) {
+      state.value++;
+    }
+  },
+  actions: {
+    actionIncreaseA({ state, commit, rootState }) {
+      commit(&quot;increaseA&quot;);
+    }
+  }
+};
+
+//store/index.js
+import Vue from &quot;vue&quot;;
+import Vuex from &quot;vuex&quot;;
+import moduleA from &quot;./module/moduleA&quot;;
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  state: {
+    count: 1
+  },
+  getters: {
+    doubleCount(state) {
+      return state.count * 2;
+    }
+  },
+  mutations: {
+    increase(state) {
+      state.count++;
+    }
+  },
+  modules: {
+    a: moduleA
+  }
+});
+
+//Home.vue
+&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    &lt;button @click=&quot;addOne&quot;&gt;触发moduleA中的action&lt;/button&gt;
+    &lt;h1&gt;moduleA中的state:{{value}}&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { mapGetters } from &quot;vuex&quot;;
+export default {
+  name: &quot;Home&quot;,
+  data() {
+    return {};
+  },
+  computed: {
+    value() {
+      return this.$store.state.a.value;
+    }
+  },
+  methods: {
+    addOne() {
+      this.$store.dispatch(&quot;actionIncreaseA&quot;);
+    }
+  }
+};
+&lt;/script&gt;
+/*
+ 4.以上面的例子可知，证明了3的正确,state是模块私有，getters和mutations,以actions是在全局命名空间的问题，所以在多模块的情况下，不可避免mutation会重名,Vuex官方给出了2种解决方案。
+ */
+ 4.1使用常量代替mutation事件类型：改写
+    /*
+      Mutation-types.js
+    */
+    //getters
+    export const DOUBLE_VALUE = &quot;moduleA/doubleValue&quot;
+    export const DOUBLE_COUNT = &quot;index/doubleCount&quot;
+    
+    //mutations
+    export const MUTA_INCREASE_VALUE = &quot;moduleA/muta_increase_value&quot;
+    export const MUTA_INCREASE_COUNT = &quot;index/muta_increase_count&quot;
+    
+    //actions 
+    export const VALUE_INCREASE_ACTION = &quot;moduleA/value_increase_action&quot;
+    export const COUNT_INCREASE_ACTION = &quot;index/count_increase_action&quot;
+   
+   /*
+    moduleA.js
+   */
+    import * as types from &quot;../mutation-types&quot;;
+    export default {
+      state: {
+        value: 1
+      },
+      getters: {
+        [types.DOUBLE_VALUE]: state =&gt; state.value * 2
+      },
+      mutations: {
+        [types.MUTA_INCREASE_VALUE](state, getters, rootState) {
+          state.value++;
+        }
+      },
+      actions: {
+        [types.VALUE_INCREASE_ACTION]({ state, commit, rootState }) {
+          commit(types.MUTA_INCREASE_VALUE);
+        }
+      }
+    };
+    /*
+     index.js
+    */
+    import Vue from &quot;vue&quot;;
+    import Vuex from &quot;vuex&quot;;
+    import moduleA from &quot;./module/moduleA&quot;;
+    import * as types from &quot;./mutation-types&quot;;
+    
+    Vue.use(Vuex);
+    
+    export default new Vuex.Store({
+      state: {
+        count: 1
+      },
+      getters: {
+        [types.DOUBLE_COUNT](state) {
+          return state.count * 2;
+        }
+      },
+      mutations: {
+        [types.MUTA_INCREASE_COUNT](state) {
+          state.count++;
+        }
+      },
+      modules: {
+        a: moduleA
+      }
+    }); 
+    /*
+      Home.vue
+     */
+ 
+    &lt;template&gt;
+      &lt;div class=&quot;home&quot;&gt;
+        &lt;button @click=&quot;addOne&quot;&gt;触发moduleA中的action&lt;/button&gt;
+        &lt;h1&gt;moduleA中的state:{{value}}&lt;/h1&gt;
+      &lt;/div&gt;
+    &lt;/template&gt;
+
+  &lt;script&gt;
+    import * as types from &quot;../store/mutation-types&quot;;
+    import { mapGetters } from &quot;vuex&quot;;
+    export default {
+      name: &quot;Home&quot;,
+      data() {
+        return {};
+      },
+      computed: {
+        value() {
+          return this.$store.state.a.value;
+        }
+      },
+      methods: {
+        addOne() {
+          this.$store.dispatch(types.VALUE_INCREASE_ACTION);
+        }
+      }
+    };
+    &lt;/script&gt;
+4.2 使用Vuex提供的方案,为模块配置namespaced属性。当模块被注册后，它的所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名.
+const store = new Vuex.Store({
+  modules: {
+    account: {
+      namespaced: true,
+
+      // 模块内容（module assets）
+      state: { ... }, // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
+      getters: {
+        isAdmin () { ... } // -&gt; getters['account/isAdmin']
+      },
+      actions: {
+        login () { ... } // -&gt; dispatch('account/login')
+      },
+      mutations: {
+        login () { ... } // -&gt; commit('account/login')
+      },
+
+      // 嵌套模块
+      modules: {
+        // 继承父模块的命名空间
+        myPage: {
+          state: { ... },
+          getters: {
+            profile () { ... } // -&gt; getters['account/profile']
+          }
+        },
+
+        // 进一步嵌套命名空间
+        posts: {
+          namespaced: true,
+
+          state: { ... },
+          getters: {
+            popular () { ... } // -&gt; getters['account/posts/popular']
+          }
+        }
+      }
+    }
+  }
+})
+/*
+ 如果想具体了解vuex提供的命名空间问题,请参考https://vuex.vuejs.org/zh/guide/modules.html
+*/
+</code></pre>
+<h3 id="三-官方推荐的的目录结构">三、官方推荐的的目录结构</h3>
+<pre><code class="language-js">/*
+  1、应用层级的状态应该集中到单个 store 对象中。
+  2、提交 mutation 是更改状态的唯一方法，并且这个过程是同步的。
+  3、异步逻辑都应该封装到 action 里面。
+  4、如果store实例过大,推荐将getters,mutations,actions进行分割。
+*/
+├── index.html
+├── main.js
+├── api
+│   └── ... # 抽取出API请求
+├── components
+│   ├── App.vue
+│   └── ...
+└── store
+    ├── index.js          # 我们组装模块并导出 store 的地方
+    ├── actions.js        # 根级别的 action
+    ├── mutations.js      # 根级别的 mutation
+    └── modules
+        ├── cart.js       # 购物车模块
+        └── products.js   # 产品模块
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue-Router 全解析]]></title>
         <id>https://codermakers.github.io/post/vue-router-quan-jie-xi/</id>
