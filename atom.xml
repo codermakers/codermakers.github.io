@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-08T07:10:54.136Z</updated>
+    <updated>2020-04-08T07:26:33.177Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -26,7 +26,7 @@
 <ul>
 <li>2.1 概括</li>
 </ul>
-<pre><code class="language-js">1、state  -&gt;状态,相当于中央仓库中的数据。
+<pre><code>1、state  -&gt;状态,相当于中央仓库中的数据。
 2、getters -&gt;相当于state的计算属性，依赖于state. 
 3、mutation -&gt;相当于直接修改state的method方法,里面不允许异步操作，如果需要需要异步操作，直接利用action去触发mutation，更改state。
 4、action -&gt;相当于mutation的附加函数，允许异步操作，然后提交mutation 
@@ -35,12 +35,13 @@
 <ul>
 <li>2.2 state 详述</li>
 </ul>
-<pre><code class="language-js">[摘要]：
+<pre><code class="language-js">/*
+   [摘要]：
 1、自store实例注册在根实例中,其中state,getters的数据在任意组件可通过this.$store.state.XX或者this.$store.getters.XXX获取。
 2、为了编码整洁，一般在组件内部利用computed进行局部映射,再利用{{}}在template进行书写。
 3、利用mapState和mapGetters辅助函数简化写法。
--------------------------------------------------------------------------
-1)、基本使用
+*/
+// 1、基本使用
 &lt;template&gt;
   &lt;div&gt;{{count}}&lt;/div&gt;
 &lt;/template&gt;
@@ -55,7 +56,7 @@
   };
 &lt;/script&gt;
 
-2）通过mapState辅助函数简化代码 -1 传入对象
+// 2、通过mapState辅助函数简化代码 -&gt; 传入对象
 &lt;script&gt;
   import { mapState } from &quot;vuex&quot;;
   export default {
@@ -64,7 +65,7 @@
     })
   };
 &lt;/script&gt;
--2 计算属性和state同名,可传入['字符串']进行映射
+// -2.1 计算属性和state同名,可传入['字符串']进行映射
 &lt;script&gt;
   import { mapState } from &quot;vuex&quot;;
   export default {
