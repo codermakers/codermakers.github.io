@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-08T03:35:31.029Z</updated>
+    <updated>2020-04-08T04:26:15.653Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -199,7 +199,173 @@ tools.fnA().fnB(); //链式调用
   display: flex;  justify-content: center; align-items: center; 
 }
 </code></pre>
-<h3 id="四-参考链接">四、参考链接</h3>
+<h3 id="五-flex布局实现骰子练习题实现如下图所示的骰子">五、Flex布局实现骰子练习题:实现如下图所示的骰子</h3>
+<figure data-type="image" tabindex="2"><img src="https://codermakers.github.io//post-images/1586319853891.png" alt="" loading="lazy"></figure>
+<pre><code class="language-html">&lt;!-- 参考代码如下 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .touzi {
+        width: 110px;
+        height: 110px;
+        padding: 5px;
+        margin: 10px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        background-color: #e7e7e7;
+      }
+
+      .dot {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #000;
+        border-radius: 50%;
+      }
+
+      /* 1点 */
+      .first-face {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* 2点 */
+      .second-face {
+        display: flex;
+        justify-content: space-between;
+      }
+      .second-face .dot:nth-child(2) {
+        align-self: flex-end;
+      }
+
+      /* 3点 */
+      .third-face {
+        display: flex;
+        justify-content: space-between;
+      }
+      .third-face .dot:nth-child(2) {
+        align-self: center;
+      }
+      .third-face .dot:nth-child(3) {
+        align-self: flex-end;
+      }
+
+      /* 4点 */
+      .fourth-face {
+        display: flex;
+        justify-content: space-between;
+      }
+      .fourth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      /* 5点 */
+      .fifth-face {
+        display: flex;
+        justify-content: space-between;
+      }
+      .fifth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .fifth-face .column:nth-child(2) {
+        justify-content: center;
+      }
+
+      /* 6点 */
+      .sixth-face {
+        display: flex;
+        justify-content: space-between;
+      }
+      .sixth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;!-- 1点 --&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;div class=&quot;touzi first-face&quot;&gt;
+        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;!-- 2点 --&gt;
+      &lt;div class=&quot;touzi second-face&quot;&gt;
+        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;!-- 3点 --&gt;
+      &lt;div class=&quot;touzi third-face&quot;&gt;
+        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;!-- 4点 --&gt;
+      &lt;div class=&quot;touzi fourth-face&quot;&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- 5点 --&gt;
+      &lt;div class=&quot;touzi fifth-face&quot;&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- 6点 --&gt;
+      &lt;div class=&quot;touzi sixth-face&quot;&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;column&quot;&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<h3 id="五-参考链接">五、参考链接</h3>
 <pre><code class="language-js">1、阮一峰Flex 布局教程  https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
 2、A Complete Guide to Flexbox：https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-basics
 3、Flex布局在线调试网站：https://the-echoplex.net/flexyboxes/
