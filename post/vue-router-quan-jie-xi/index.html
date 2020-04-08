@@ -1,22 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://codermakers.github.io/</id>
-    <title>CoderMakers</title>
-    <updated>2020-04-08T06:43:40.703Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://codermakers.github.io/"/>
-    <link rel="self" href="https://codermakers.github.io/atom.xml"/>
-    <subtitle>凉风有信，风月无边</subtitle>
-    <logo>https://codermakers.github.io/images/avatar.png</logo>
-    <icon>https://codermakers.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, CoderMakers</rights>
-    <entry>
-        <title type="html"><![CDATA[Vue-Router 全解析]]></title>
-        <id>https://codermakers.github.io/post/vue-router-quan-jie-xi/</id>
-        <link href="https://codermakers.github.io/post/vue-router-quan-jie-xi/">
-        </link>
-        <updated>2020-04-08T05:08:45.000Z</updated>
-        <content type="html"><![CDATA[<p>VueRouter 插件 学习</p>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Vue-Router 全解析 | CoderMakers</title>
+<meta name="description" content="凉风有信，风月无边">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://codermakers.github.io//favicon.ico?v=1586328214200">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://codermakers.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://codermakers.github.io/">
+        <img class="avatar" src="https://codermakers.github.io//images/avatar.png?v=1586328214200" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://codermakers.github.io/">
+        <h1 class="site-title">CoderMakers</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Vue-Router 全解析</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-04-08</span>
+            
+          </div>
+          <div class="post-content">
+            <p>VueRouter 插件 学习</p>
 <h3 id="一-vuerouter-是什么">一、VueRouter 是什么?</h3>
 <pre><code class="language-js">VueRouter作为Vue的一插件使用，是一个`url路径跳转的控制器`
 </code></pre>
@@ -680,430 +750,58 @@ Notes:
 
 
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[JS中This指向最终释义]]></title>
-        <id>https://codermakers.github.io/post/js-zhong-this-de-zui-zhong-zhi-xiang-chan-shu/</id>
-        <link href="https://codermakers.github.io/post/js-zhong-this-de-zui-zhong-zhi-xiang-chan-shu/">
-        </link>
-        <updated>2020-04-07T14:32:01.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="一-this的指向分类">一、This的指向分类</h3>
-<pre><code class="language-js">-1、全局环境下
-    无论是否在严格模式下，在全局执行环境中（在任何函数体外部）this 都指向全局对象window。
--2、函数环境下
-    在函数内部，this的值取决于函数被调用的方式。this-&gt;执行环境（execution context)对象(非严格模式下,strict模式下,没有EC概念)
-</code></pre>
-<h3 id="二-细说各种情况下的this指向问题">二、细说各种情况下的This指向问题</h3>
-<ul>
-<li>2.1 对象打点调用自身方法,this指向该对象</li>
-</ul>
-<pre><code class="language-js">var people = {
-  sayHi() {
-    conose.log(this); //this --&gt;people
-  }
-};
-people.sayHi();
-</code></pre>
-<p>-2.2 DOM绑定事件函数中的this，this指向该DOM对象,本质是隶属于2.1</p>
-<pre><code class="language-js">  document.getElementById(&quot;btn&quot;).onclick = function(e){
-     console.log(this)   //this--&gt;document.getElementById(&quot;btn&quot;)
-  }
-  //理解：本身DOM对象下的onclick方法调用
-</code></pre>
-<p>-2.3 定时器中的callback中的this，this指向window</p>
-<pre><code class="language-js">window.setInterval(function() {
-    console.log(this);
-}, 1000);
-window.setTimeout(function() {
-    console.log(this);
-}, 1000);
 
-//换种写法
-function callback(){
-   console.log(this);
-}
-window.setInterval(callback, 1000);
-window.setTimeout(callback, 1000);
-//理解：setInterval还是setTimeout都是window下的方法，其中的callback也指向window
-</code></pre>
-<p>-2.4 数组迭代方法中的callback中的this,this指向window</p>
-<pre><code class="language-js">//迭代方法
-   - forEach(callback)
-   - map(callback)
-   - filter(callback)
-   - every(callback)
-   - some(callback)
-// 以map为例，callback(迭代器)可以函数名放在全局环境，所以是window；
+          </div>
+        </div>
 
-function evenFn(v,i){
-   console.log(this) // this-&gt;window
-   return v*2
-}
-[1,2,3,4].map(evenFn);
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://codermakers.github.io/post/js-zhong-this-de-zui-zhong-zhi-xiang-chan-shu/">
+              <h3 class="post-title">
+                下一篇：JS中This指向最终释义
+              </h3>
+            </a>
+          </div>
+          
+      </div>
 
-//或者
-[1,2,3,4].map(v=&gt;v*2)
-</code></pre>
-<p>-2.5 使用 new 操作符实例化的对象, 构造函数中的this, 原型上方法中的 this,默认指向该实例</p>
-<pre><code class="language-js">function Cat(name, age) {
-  this.name = name;
-  this.age = age;
-  this.play = function() {
-    console.log(this);
-  };
-}
-Cat.prototype.run = function() {
-  console.log(this); //this--&gt;利用构造函数new出的实例对象
-};
+      
 
-let Kimi = new Cat(&quot;Kimi&quot;, 3);
-Kimi.play();
-Kimi.run();
-</code></pre>
-<ul>
-<li>2.6 箭头函数中的this,this指向父级环境对象</li>
-</ul>
-<pre><code class="language-js">var obj = {
-  name:'Kimi',
-  run:()=&gt;{
-    console.log(this) //this --&gt;window
-  }
-}
-obj.run()
-//理解:箭头函数中没有this,会找父级环境中的this.
-</code></pre>
-<h3 id="三-javascript中如何修改this">三、JavaScript中如何修改this?</h3>
-<pre><code class="language-js">function print(){
-  console.log('name:' + this.name);
-  console.log(arguments)
-}
-var obj = {
-  name:'Jack',
-  age:18
-}
-//调用call
-print.call(obj,1,2,3)  // -&gt;逐个传参
-//调用apply
-print.apply(obj,[1,2,3]) //类数组或者数组传参
+      <div class="site-footer">
+  <div class="slogan">凉风有信，风月无边</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://codermakers.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-// bind绑定this,返回一个函数，必须加()执行
-print.bind(obj,[1,2,3])()   //传参形式无限制
-/* 
- * 1、 Js中使用bind,call,apply方法可以手动修改this指向,都采用后续传参的形式.
- * 2、区别：
-      1、call的传参是单个传递的，而 apply后续传递的参数是(或类数组)数组形式，arguments都是逐个参数的形式,而 bind没有规定，可以传各种值，对象，数组，基本值.
-      2、call和 apply函数的执行是直接执行的，而 bind函数会返回一个函数，然后我们想要()调用的时候才会执行。
-*/
-</code></pre>
-<h3 id="四-项目中如何使用this">四、项目中如何使用this?</h3>
-<ul>
-<li>4.1 保存当前环境对象</li>
-</ul>
-<pre><code class="language-js">//常以that、_that、_self、context等变量保存this
-oBtn.addEventListener(&quot;click&quot;, function() {
-  let _self = this; //保存this
-  setTimeout(function() {
-    alert(_self.innerHTML);
-  }, timeout);
-});
 
-</code></pre>
-<ul>
-<li>4.2 作为返回值返回</li>
-</ul>
-<pre><code class="language-js">var tools = {
-  fnA() {
-    return this;
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
   },
-  fnB() {
-    return this;
-  }
-  // ...
-};
-tools.fnA().fnB(); //链式调用
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[一张图看懂FLex布局]]></title>
-        <id>https://codermakers.github.io/post/yi-zhang-tu-kan-dong-flex-bu-ju/</id>
-        <link href="https://codermakers.github.io/post/yi-zhang-tu-kan-dong-flex-bu-ju/">
-        </link>
-        <updated>2020-04-07T12:18:57.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="一-flex-简明介绍">一、Flex 简明介绍</h3>
-<blockquote>
-<p>Flex布局是CSS3提出的一种新的布局方式,比起传统布局方式更加灵活，但在PC端有些属性只兼容到IE10,具体参考CanIUse的提供的数据，如果不兼容到老的IE浏览器,可考虑Flex布局。移动端建议直接考虑Flex布局。</p>
-</blockquote>
-<h3 id="二-flex布局图">二、Flex布局图</h3>
-<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1586316913467.png" alt="" loading="lazy"></figure>
-<pre><code class="language-js"> 【注意点】:
-    1、设置Flex布局后,子元素的float、clear和vertical-align属性将失效。
-    2、flex-basis为子项目设置固定宽度,如200px，默认值auto
-    3、flex-grow属性定义项目的放大比例，默认为0，负数无效。
-    4、flex-shrink属性定义了项目的缩小比例,默认为1，负数无效。
-    5、flex-flow：row nowrap(默认)
-    6、align-self：定义单个子项目对齐方式。
-    7、flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后2个选项可选。
-    8、flex:1默认占满剩余空间。
-</code></pre>
-<h3 id="三-flex布局的应用场景">三、Flex布局的应用场景</h3>
-<ul>
-<li>4.1 垂直居中</li>
-</ul>
-<pre><code class="language-css">/*方式1*/
-.flex { display: flex;  justify-content: center; align-items: center; }
+})
 
-/*方式2*/
-.flex { display: flex；}
-.item { margin: auto; }
-</code></pre>
-<ul>
-<li>4.2 在移动端布局预先定义一些class类,使用时直接加。</li>
-</ul>
-<pre><code class="language-css">.box-flex{
-  display: flex; 
-}
-.flex-1{
-  flex:1
-}
-.box-align-center{
-  display: flex;  justify-content: center; align-items: center; 
-}
-</code></pre>
-<h3 id="五-flex布局实现骰子练习题实现如下图所示的骰子">五、Flex布局实现骰子练习题:实现如下图所示的骰子</h3>
-<figure data-type="image" tabindex="2"><img src="https://codermakers.github.io//post-images/1586319853891.png" alt="" loading="lazy"></figure>
-<pre><code class="language-html">&lt;!-- 参考代码如下 --&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;style&gt;
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      .container {
-        height: 600px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .touzi {
-        width: 110px;
-        height: 110px;
-        padding: 5px;
-        margin: 10px;
-        border: 1px solid #000;
-        border-radius: 5px;
-        background-color: #e7e7e7;
-      }
+</script>
 
-      .dot {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background-color: #000;
-        border-radius: 50%;
-      }
 
-      /* 1点 */
-      .first-face {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
 
-      /* 2点 */
-      .second-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .second-face .dot:nth-child(2) {
-        align-self: flex-end;
-      }
 
-      /* 3点 */
-      .third-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .third-face .dot:nth-child(2) {
-        align-self: center;
-      }
-      .third-face .dot:nth-child(3) {
-        align-self: flex-end;
-      }
-
-      /* 4点 */
-      .fourth-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .fourth-face .column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      /* 5点 */
-      .fifth-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .fifth-face .column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .fifth-face .column:nth-child(2) {
-        justify-content: center;
-      }
-
-      /* 6点 */
-      .sixth-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .sixth-face .column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-    &lt;/style&gt;
-  &lt;/head&gt;
-
-  &lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-      &lt;!-- 1点 --&gt;
-      &lt;div class=&quot;touzi first-face&quot;&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;!-- 2点 --&gt;
-      &lt;div class=&quot;touzi second-face&quot;&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;!-- 3点 --&gt;
-      &lt;div class=&quot;touzi third-face&quot;&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;!-- 4点 --&gt;
-      &lt;div class=&quot;touzi fourth-face&quot;&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-
-      &lt;!-- 5点 --&gt;
-      &lt;div class=&quot;touzi fifth-face&quot;&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;!-- 6点 --&gt;
-      &lt;div class=&quot;touzi sixth-face&quot;&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-
-</code></pre>
-<h3 id="五-参考链接">五、参考链接</h3>
-<pre><code class="language-js">1、阮一峰Flex 布局教程  https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
-2、A Complete Guide to Flexbox：https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-basics
-3、Flex布局在线调试网站：https://the-echoplex.net/flexyboxes/
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ Gridea+Github Pages搭建个人静态博客]]></title>
-        <id>https://codermakers.github.io/post/grideagithub-pagesconding/</id>
-        <link href="https://codermakers.github.io/post/grideagithub-pagesconding/">
-        </link>
-        <updated>2020-03-25T13:21:37.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="一-github-pages-gridea的简明介绍">一、Github Pages、Gridea的简明介绍</h3>
-<pre><code class="language-js">  Github Pages 是GitHub提供的一项功能，允许用户以个人或者组织站点创建创建一个静态网站，但Github Pages本身提供的主题很少且单一，而Gridea一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点，主题很好。同类型的Hexo等工具操作略显复杂。
-</code></pre>
-<h3 id="二-开始搭建个人博客之旅">二、开始搭建个人博客之旅</h3>
-<ul>
-<li>2.1 新建仓库<br>
-<img src="https://codermakers.github.io//post-images/1586187298663.png" alt="" loading="lazy"></li>
-</ul>
-<pre><code class="language-js">注意点：
-     1、新建的仓库名必须是username.github.io(个人)
-     2、仓库必须是public,否则只能自己访问
-</code></pre>
-<ul>
-<li>2.2 生成token令牌（用于Gridea和github远程仓库进行连接）<br>
-<img src="https://codermakers.github.io//post-images/1586187857234.png" alt="" loading="lazy"></li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1586187781974.png" alt="" loading="lazy"></figure>
-<pre><code class="language-js">注意点：
-   1、点击个人头像setting，进入Developer settings,选择Personal access tokens,点击Generate token即可生成。
-   2、复制个人token到本地，只会开启一次，注意保存。之后勾选个人repo权限即可
-</code></pre>
-<ul>
-<li>2.3 下载Gridea客户端进行连接设置<br>
-<img src="https://codermakers.github.io//post-images/1586188413134.png" alt="" loading="lazy"></li>
-</ul>
-<pre><code class="language-js">注意点：
-     1、填写token令牌，点击“检测远程连接”,出现连接成功即可。
-     2、填写完毕，一定要保存，切记。
-</code></pre>
-<h3 id="三-gridea配置个人博客主题">三、Gridea配置个人博客主题</h3>
-<pre><code class="language-js">   Gridea的主题大多免费,除个别收费，就6块钱，看中哪个主题,直接点到主题的github主页，看安装
-方法即可,一般是到release下下载最新的版本解压缩到Gridea站点源文件theme文件夹下。之后Gridea重启软件即可。
-</code></pre>
-<p><img src="https://codermakers.github.io//post-images/1586256910537.png" alt="" loading="lazy"><br>
-<img src="https://codermakers.github.io//post-images/1586256941017.png" alt="" loading="lazy"></p>
-<pre><code class="language-js">注意点：
-     1、点击主题，选择更多主题，看到心意的主题下即可。
-     2、有时候主题可能不生效，多重启几遍
-</code></pre>
-<h3 id="四-gridea撰写个人博客">四、Gridea撰写个人博客</h3>
-<pre><code class="language-js">   撰写博客一定要注意：分类，支持makedown语法,写完之后，点击同步即可，Ctr+P随时预览效果，这里介绍一下&quot;列表中隐藏&quot;功能。勾选一下，如果此时文章没有编写完毕，即使保存，点击同步也不会被发布到远程。同时文章列表中的文章会被Hide字眼标识。写完之后，记得取消。
-</code></pre>
-<p><img src="https://codermakers.github.io//post-images/1586258346407.png" alt="" loading="lazy"><br>
-<img src="https://codermakers.github.io//post-images/1586258354570.png" alt="" loading="lazy"></p>
-<pre><code class="language-js">注意点：
-     1、文章写完，一定要注意随时保存。
-     2、点击预览,会在本地http://localhost:4000/archives/，点击同步，会在http://codermakers.github.io 看到自己发布的文章，如果没同步，多试几次。
-</code></pre>
-<h3 id="五-参考链接">五、参考链接</h3>
-<pre><code class="language-js">1、GitHub Pages介绍 ：https://pages.github.com/
-2、Gridea 官网详细配置：https://gridea.dev/gridea-start/
-3、Suremotoo(B站用户)B站实操视频：：https://www.bilibili.com/video/BV1W4411H7zS
-4、文章只记录主要步骤，次要配置看自己喜好配置。
-</code></pre>
-]]></content>
-    </entry>
-</feed>
+  </body>
+</html>
