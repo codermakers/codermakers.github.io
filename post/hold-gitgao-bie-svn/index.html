@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://codermakers.github.io//favicon.ico?v=1586511055367">
+<link rel="shortcut icon" href="https://codermakers.github.io//favicon.ico?v=1586866242140">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://codermakers.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://codermakers.github.io/">
-        <img class="avatar" src="https://codermakers.github.io//images/avatar.png?v=1586511055367" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://codermakers.github.io//images/avatar.png?v=1586866242140" alt="" width="32px" height="32px">
       </a>
       <a href="https://codermakers.github.io/">
         <h1 class="site-title">CoderMakers</h1>
@@ -107,7 +107,113 @@
 2.4、 Remote：远程仓库</p>
 <h3 id="三-图解git-命令清单">三、图解Git 命令清单</h3>
 <p><img src="https://codermakers.github.io//post-images/1586361247568.jpg" alt="" loading="lazy"><br>
-<img src="https://codermakers.github.io//post-images/1586361256343.jpg" alt="" loading="lazy"></p>
+<img src="https://codermakers.github.io//post-images/1586361256343.jpg" alt="" loading="lazy"><br>
+PS:GitLab的cheatsheet也不错：<a href="https://about.gitlab.com/images/press/git-cheat-sheet.pdf">Link</a></p>
+<h3 id="四-自己整理的常用命令">四、自己整理的常用命令</h3>
+<h1 id="git-cheatsheet">Git CheatSheet</h1>
+<h3 id="一-git-basic">一、Git Basic</h3>
+<pre><code class="language-js">$ git clone &lt;url&gt;      -&gt; 克隆远程仓库代码到本地
+$ git add .            -&gt; 添加所有文件到暂存区
+$ git status           -&gt; 检测文件状态
+$ git commit -m &quot;xxxx&quot; -&gt; 添加文件到本地仓库
+
+$ git pull             -&gt; 拉取远程代码并合并到当前分支
+$ git push             -&gt; 推送本地代码到远程(先pull后push，同时确保当前工作区是clean)
+</code></pre>
+<h3 id="二-git-config">二、Git config</h3>
+<pre><code>$ cat ~/.gitconfig 查看配置
+
+//首次 commit 必须向 Git 自报家门,--global 参数如果在单独项目文件下设置，可以不必加。name 和 email
+$ git config --global user.name &quot;Your Name&quot;
+$ git config --global user.email &quot;you@example.com&quot;
+</code></pre>
+<h3 id="三-git-log-查看提交日志">三、Git log 查看提交日志</h3>
+<pre><code> $ git log                              -&gt;列出当前分支commit记录日志(只能是当前commit的以往commit历史记录)
+ $ git log -n                           -&gt;列出最近n次commit记录
+ $ git log -p -2                        -&gt;列出最近2次提交日志并显示出两者差异
+ $ git log --oneline --graph --decorate -&gt;以较好的方式(单行,图形化)列出提交日志
+</code></pre>
+<h3 id="四-git-branches-分支操作">四、Git Branches 分支操作</h3>
+<pre><code class="language-js"> $ git branch &lt;name&gt;:创建分支
+ $ git checkout &lt;name&gt;:切换分支
+ $ git checkout -b &lt;name&gt;:切换并创建分支
+ $ git branch -d/D &lt;name&gt;:删除分支
+
+ $ git merge &lt;name&gt;  -&gt;合并当前分支,注意一定要切换到当前分支
+ $ git branch        -&gt;列出所有本地分支
+ $ git branch -r     -&gt;列出所有远程分支
+ $ git branch -a     -&gt;列出本地和远程所有分支
+</code></pre>
+<h3 id="五-git-reset-代码回滚">五、Git Reset 代码回滚</h3>
+<pre><code class="language-js">// Git 将&quot;文件管理&quot;分为2个区域,4个状态:原内容-&gt;修改过的内容-&gt;暂存区--&gt;版本库(本地仓库),利用reset可以在任意区域切换
+
+$ git reset --soft &lt;版本号&gt; -&gt;版本库回滚到暂存区
+$ git reset HEAD &lt;file1&gt; &lt;file2&gt; -&gt;文件从暂存区回滚到修改过的内容
+
+$ git reflog  -&gt; 列出历史操作记录
+$ git reset --hard &lt;版本号&gt;  -&gt;从版本库回滚到工作区(任意一次commit记录)
+
+</code></pre>
+<h3 id="六-remote-resposity">六、Remote Resposity</h3>
+<pre><code class="language-js">$ git init       -&gt;初始化本地仓库
+$ git remote -v -&gt;查看关联的远程仓库
+$ git remote add origin(远程仓库名，一般命名为 origin) [url]:关联远程仓库
+
+$ git push -u origin master -&gt;本地仓库码 master 分支与远程 master 建立追踪关系
+
+[注意]
+  以上情况，git init 初始化的仓库和远程仓库 origin master 分支默认并未建立追踪关系,git clone 下的代码，则并不需要这样操作,git clone 默认会将远程所有分支拉取过来,但如果此时 git branch 只会有 master 分支，需要使用 git checkout &lt;name&gt;切换到某个分支，并建立 track 关系，此时本地就拥有该分支了。
+</code></pre>
+<h3 id="七-git-rebase">七、Git rebase</h3>
+<pre><code class="language-js"></code></pre>
+<h3 id="八-git-stash">八、Git Stash</h3>
+<pre><code class="language-js"></code></pre>
+<h3 id="九-配置-aliasgitconfig简化命令行">九、配置 alias,.gitconfig,简化命令行</h3>
+<pre><code class="language-md">[user]
+email = 178xxxxxx10@163.com
+name = codermakers
+[credential]
+helper = manager
+[alias]
+
+# 基本操作
+
+cl = clone
+ad = add .
+cm = commit -m
+st = status
+ps = push
+pl = pull
+
+# 合并
+
+m = merge
+md = merge dev
+mm = merge master
+
+# 分支操作
+
+co = checkout
+br = branch
+cb = checkout -b
+cd = branch -d
+ll = branch
+lr = branch -r
+
+# 远程
+
+rv = remote -v
+
+# 查看日志
+
+last = log -1
+lgh = log --graph
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset ' --abbrev-commit
+
+# 版本回退
+
+unstage = reset HEAD
+</code></pre>
 
           </div>
         </div>
