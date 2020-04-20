@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>技术杂谈 | CoderMakers</title>
+<title>重新认识盒模型中的重要盒子属性 | CoderMakers</title>
 <meta name="description" content="凉风有信，风月无边">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -78,48 +78,41 @@
 
 
       <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">重新认识盒模型中的重要盒子属性</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-04-20</span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="一-块级元素中width默认值是100吗">一、块级元素中width默认值是100%吗？</h3>
+<pre><code>  盒模型中width/height默认值都是auto，意思是由浏览器决定如何渲染，而块级盒子浏览器会让width尽可能的宽，所以看起来是100%的效果，这是块级盒子的特性。
+</code></pre>
+<h3 id="二-增加padding一定会使得标准盒子增大吗">二、增加padding一定会使得标准盒子增大吗？</h3>
+<pre><code>  对于block元素来讲，如果width没有显式设置的情况下,设置水平的padding不会使得盒子变宽，但会挤内容区(如文字)。
+  对于inline元素，来讲,padding-top无效，margn-top,margin-bottom,width,height均无效。
+</code></pre>
+<h3 id="三-htmlbodyheight100为什么能设置全屏的高度">三、html,body{height:100%}为什么能设置全屏的高度</h3>
+<pre><code>  本质原因是由于盒子模型中width,height,border,padding定位中偏移量top,right,left,bottom均以“包含块”为基准进行计算，html根元素，包含块是&quot;初始包含块&quot;,可简单认为是viewport，height：100%，继承了vp的高度，body设置100%,继承html的高度，如果想让某个div设置全屏高，只需让它放在body的儿子层级下,设置100%即可。
+</code></pre>
+<h3 id="四-margin0-auto失效的原因是什么如何避免">四、margin:0 auto失效的原因是什么，如何避免</h3>
+<pre><code>margin:0 auto最初经常被用来让块级盒子(设置宽度)，水平居中，但这规律适用于&quot;标准文档流&quot;当中，浮动，定位都会使得这条规律不再适用。所以如果想使得盒子居中，应该遵循以下规律
+ 1、block元素,设置宽度即可。
+ 2、inlne元素,设置display为block，同时设置宽度即可。
+ 3、inline-block对于button,input本身就有宽度,设置display为block即可。
+</code></pre>
+<h3 id="五-text-align如何正确使用">五、text-align如何正确使用</h3>
+<pre><code>   对于text-align本质可使得inline或inline-block或者文本在盒子中水平居中，配合margin；0 auto即可。
+</code></pre>
 
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> 技术杂谈
-          </h2> 
+          </div>
         </div>
 
         
-<section class="post-item">
-    <div class="content">
-      <a href="https://codermakers.github.io/post/grideagithub-pagesconding/">
-        <h2 class="post-title"> Gridea+Github Pages搭建个人静态博客</h2>
-      </a>
-      <div class="post-abstract">
-        
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-03-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://codermakers.github.io/tag/O9464ivpi/">
-                技术杂谈
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
 
-
-<div class="pagination-container">
-  
-  
-</div>
-
-
-      </div>
+      
 
       <div class="site-footer">
   <div class="slogan">凉风有信，风月无边</div>

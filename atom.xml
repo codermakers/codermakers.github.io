@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-14T12:15:18.695Z</updated>
+    <updated>2020-04-20T12:56:53.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://codermakers.github.io/images/avatar.png</logo>
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CoderMakers</rights>
+    <entry>
+        <title type="html"><![CDATA[盒模型(Box-Model).md]]></title>
+        <id>https://codermakers.github.io/post/chong-xin-ren-shi-he-mo-xing-box-model/</id>
+        <link href="https://codermakers.github.io/post/chong-xin-ren-shi-he-mo-xing-box-model/">
+        </link>
+        <updated>2020-04-20T09:16:32.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1587387366873.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hold Git,告别SVN]]></title>
         <id>https://codermakers.github.io/post/hold-gitgao-bie-svn/</id>
@@ -84,7 +93,7 @@ $ git push -u origin master -&gt;本地仓库码 master 分支与远程 master �
 [注意]
   以上情况，git init 初始化的仓库和远程仓库 origin master 分支默认并未建立追踪关系,git clone 下的代码，则并不需要这样操作,git clone 默认会将远程所有分支拉取过来,但如果此时 git branch 只会有 master 分支，需要使用 git checkout &lt;name&gt;切换到某个分支，并建立 track 关系，此时本地就拥有该分支了。
 </code></pre>
-<h3 id="七-git-rebase">七、Git rebase</h3>
+<h3 id="七-git-rebase变基">七、Git rebase(变基)</h3>
 <pre><code class="language-js"></code></pre>
 <h3 id="八-git-stash">八、Git Stash</h3>
 <pre><code class="language-js"></code></pre>
