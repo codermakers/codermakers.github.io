@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-22T06:22:44.362Z</updated>
+    <updated>2020-04-22T08:08:53.386Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -1610,17 +1610,112 @@ tools.fnA().fnB(); //链式调用
 .item { margin: auto; }
 </code></pre>
 <ul>
-<li>4.2 在移动端布局预先定义一些class类,使用时直接加。</li>
+<li>4.2 在css布局预先定义一些class类,使用时直接加。</li>
 </ul>
-<pre><code class="language-css">.box-flex{
-  display: flex; 
+<pre><code class="language-css">.d-flex{
+  display: flex;
 }
+.d-inline-flex{
+  display: inline-flex;
+}
+.flex-row{
+  flex-direction: row;
+}
+.flex-column{
+  flex-direction: column;
+}
+
+.justify-content-start{
+  justify-content: flex-start;
+}
+.justify-content-end{
+  justify-content: flex-end;
+}
+.justify-content-center{
+  justify-content: center;
+}
+
+.justify-content-between{
+  justify-content: space-between;
+}
+.justify-content-around{
+  justify-content: space-around;
+}
+.justify-content-evenly{
+  justify-content: space-evenly;
+}
+
+.align-items-start{
+  align-items: flex-start;
+}
+.align-items-end{
+  align-items: flex-end;
+}
+.align-items-center{
+  align-items: center;
+}
+.align-items-baseline{
+  align-items: baseline;
+}
+.align-items-stretch{
+  align-items: stretch;
+}
+
+.flex-nowrap{
+  flex-wrap: nowrap;
+}
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
 .flex-1{
-  flex:1
+  flex: 1;
 }
-.box-align-center{
-  display: flex;  justify-content: center; align-items: center; 
+.flex-2{
+  flex: 2;
 }
+
+.align-content-start{
+  align-content: flex-start;
+}
+.align-content-end{
+  align-content: flex-end;
+}
+.align-content-center{
+  align-content: center;
+}
+.align-content-around{
+  align-content: space-around;
+}
+.align-content-stretch{
+  align-content: stretch;
+}
+
+.order-0{
+  order:0
+}
+.order-1{
+  order: 1;
+}
+.order-2{
+  order:2
+}
+.order-3{
+  order:3
+}
+.order-4{
+  order: 4;
+}
+.order-5{
+  order:5
+}
+.order-6{
+  order:6
+}
+.order-7{
+  order:7
+}
+
 </code></pre>
 <h3 id="五-flex布局实现骰子练习题实现如下图所示的骰子">五、Flex布局实现骰子练习题:实现如下图所示的骰子</h3>
 <figure data-type="image" tabindex="2"><img src="https://codermakers.github.io//post-images/1586319853891.png" alt="" loading="lazy"></figure>
