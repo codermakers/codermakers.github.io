@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-04-22T10:34:10.460Z</updated>
+    <updated>2020-04-24T12:50:06.362Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -10,6 +10,16 @@
     <logo>https://codermakers.github.io/images/avatar.png</logo>
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CoderMakers</rights>
+    <entry>
+        <title type="html"><![CDATA[Vue-TodoList 实现(UI借鉴)]]></title>
+        <id>https://codermakers.github.io/post/vue-todolist-shi-xian-ui-jie-jian/</id>
+        <link href="https://codermakers.github.io/post/vue-todolist-shi-xian-ui-jie-jian/">
+        </link>
+        <updated>2020-04-24T12:42:46.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://codermakers.github.io//post-images/1587732324847.png" alt="" loading="lazy"><br>
+具体源码实现：传送门：https://github.com/codermakers/Todos,码字不易给个star!!!</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[攻克CSS系列之标准流/浮动流/定位流/z-index(层叠上下文)]]></title>
         <id>https://codermakers.github.io/post/gong-ke-css-xi-lie-zhi-biao-zhun-liu-fu-dong-liu-ding-wei-liu-z-index/</id>
@@ -1896,68 +1906,6 @@ tools.fnA().fnB(); //链式调用
 <pre><code class="language-js">1、阮一峰Flex 布局教程  https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
 2、A Complete Guide to Flexbox：https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-basics
 3、Flex布局在线调试网站：https://the-echoplex.net/flexyboxes/
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ Gridea+Github Pages搭建个人静态博客]]></title>
-        <id>https://codermakers.github.io/post/grideagithub-pagesconding/</id>
-        <link href="https://codermakers.github.io/post/grideagithub-pagesconding/">
-        </link>
-        <updated>2020-03-25T13:21:37.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="一-github-pages-gridea的简明介绍">一、Github Pages、Gridea的简明介绍</h3>
-<pre><code class="language-js">  Github Pages 是GitHub提供的一项功能，允许用户以个人或者组织站点创建创建一个静态网站，但Github Pages本身提供的主题很少且单一，而Gridea一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点，主题很好。同类型的Hexo等工具操作略显复杂。
-</code></pre>
-<h3 id="二-开始搭建个人博客之旅">二、开始搭建个人博客之旅</h3>
-<ul>
-<li>2.1 新建仓库<br>
-<img src="https://codermakers.github.io//post-images/1586187298663.png" alt="" loading="lazy"></li>
-</ul>
-<pre><code class="language-js">注意点：
-     1、新建的仓库名必须是username.github.io(个人)
-     2、仓库必须是public,否则只能自己访问
-</code></pre>
-<ul>
-<li>2.2 生成token令牌（用于Gridea和github远程仓库进行连接）<br>
-<img src="https://codermakers.github.io//post-images/1586187857234.png" alt="" loading="lazy"></li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1586187781974.png" alt="" loading="lazy"></figure>
-<pre><code class="language-js">注意点：
-   1、点击个人头像setting，进入Developer settings,选择Personal access tokens,点击Generate token即可生成。
-   2、复制个人token到本地，只会开启一次，注意保存。之后勾选个人repo权限即可
-</code></pre>
-<ul>
-<li>2.3 下载Gridea客户端进行连接设置<br>
-<img src="https://codermakers.github.io//post-images/1586188413134.png" alt="" loading="lazy"></li>
-</ul>
-<pre><code class="language-js">注意点：
-     1、填写token令牌，点击“检测远程连接”,出现连接成功即可。
-     2、填写完毕，一定要保存，切记。
-</code></pre>
-<h3 id="三-gridea配置个人博客主题">三、Gridea配置个人博客主题</h3>
-<pre><code class="language-js">   Gridea的主题大多免费,除个别收费，就6块钱，看中哪个主题,直接点到主题的github主页，看安装
-方法即可,一般是到release下下载最新的版本解压缩到Gridea站点源文件theme文件夹下。之后Gridea重启软件即可。
-</code></pre>
-<p><img src="https://codermakers.github.io//post-images/1586256910537.png" alt="" loading="lazy"><br>
-<img src="https://codermakers.github.io//post-images/1586256941017.png" alt="" loading="lazy"></p>
-<pre><code class="language-js">注意点：
-     1、点击主题，选择更多主题，看到心意的主题下即可。
-     2、有时候主题可能不生效，多重启几遍
-</code></pre>
-<h3 id="四-gridea撰写个人博客">四、Gridea撰写个人博客</h3>
-<pre><code class="language-js">   撰写博客一定要注意：分类，支持makedown语法,写完之后，点击同步即可，Ctr+P随时预览效果，这里介绍一下&quot;列表中隐藏&quot;功能。勾选一下，如果此时文章没有编写完毕，即使保存，点击同步也不会被发布到远程。同时文章列表中的文章会被Hide字眼标识。写完之后，记得取消。
-</code></pre>
-<p><img src="https://codermakers.github.io//post-images/1586258346407.png" alt="" loading="lazy"><br>
-<img src="https://codermakers.github.io//post-images/1586258354570.png" alt="" loading="lazy"></p>
-<pre><code class="language-js">注意点：
-     1、文章写完，一定要注意随时保存。
-     2、点击预览,会在本地http://localhost:4000/archives/，点击同步，会在http://codermakers.github.io 看到自己发布的文章，如果没同步，多试几次。
-</code></pre>
-<h3 id="五-参考链接">五、参考链接</h3>
-<pre><code class="language-js">1、GitHub Pages介绍 ：https://pages.github.com/
-2、Gridea 官网详细配置：https://gridea.dev/gridea-start/
-3、Suremotoo(B站用户)B站实操视频：：https://www.bilibili.com/video/BV1W4411H7zS
-4、文章只记录主要步骤，次要配置看自己喜好配置。
 </code></pre>
 ]]></content>
     </entry>
