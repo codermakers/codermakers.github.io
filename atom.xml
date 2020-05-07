@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://codermakers.github.io/</id>
     <title>CoderMakers</title>
-    <updated>2020-05-07T04:32:17.362Z</updated>
+    <updated>2020-05-07T15:27:09.373Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://codermakers.github.io/"/>
     <link rel="self" href="https://codermakers.github.io/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://codermakers.github.io/images/avatar.png</logo>
     <icon>https://codermakers.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CoderMakers</rights>
+    <entry>
+        <title type="html"><![CDATA[Git 高级命令 (动画演示性学习)]]></title>
+        <id>https://codermakers.github.io/post/git-gao-ji-ming-ling-dong-hua-yan-shi-xing-xue-xi/</id>
+        <link href="https://codermakers.github.io/post/git-gao-ji-ming-ling-dong-hua-yan-shi-xing-xue-xi/">
+        </link>
+        <updated>2020-05-07T11:51:01.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="一-网站学习">一、网站学习</h3>
+<pre><code>  网站(https://learngitbranching.js.org) 可以说是最好的Git 教程网站，网站内置了Git 沙盒,方便查看每次Git 命令的效果，同时设置了Git 命令从基础到高级的:&quot;闯关游戏&quot;。
+</code></pre>
+<h3 id="二-可视化git命令">二、可视化Git命令</h3>
+<ul>
+<li>
+<p>git merge<br>
+<img src="https://codermakers.github.io//post-images/1588861188889.gif" alt="" loading="lazy"><br>
+<img src="https://codermakers.github.io//post-images/1588862390288.gif" alt="" loading="lazy"></p>
+<p>区别:<br>
+1、git merge(-ff) 快速推进，如果当前分支与要合并的分支相比，没有额外提交，会快速合并，不创建新的提交。<br>
+2、 git merge(-no-ff) 如果我们在当前分支上提交了要合并的分支没有的更改，git将执行。使用No-fast-foward 合并,No-fast-foward合并，Git在活动分支上创建一个新的合并提交。提交的父提交指向活动分支和要合并的分支！</p>
+</li>
+<li>
+<p>git fetch<br>
+<img src="https://codermakers.github.io//post-images/1588865216737.gif" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>git pull<br>
+<img src="https://codermakers.github.io//post-images/1588864944732.gif" alt="" loading="lazy"></p>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue-TodoList 实现(UI借鉴)]]></title>
         <id>https://codermakers.github.io/post/vue-todolist-shi-xian-ui-jie-jian/</id>
@@ -1593,319 +1623,6 @@ oBtn.addEventListener(&quot;click&quot;, function() {
   // ...
 };
 tools.fnA().fnB(); //链式调用
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[一张图Hold住Flex布局]]></title>
-        <id>https://codermakers.github.io/post/yi-zhang-tu-kan-dong-flex-bu-ju/</id>
-        <link href="https://codermakers.github.io/post/yi-zhang-tu-kan-dong-flex-bu-ju/">
-        </link>
-        <updated>2020-04-07T12:18:57.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="一-flex-简明介绍">一、Flex 简明介绍</h3>
-<blockquote>
-<p>Flex布局是CSS3提出的一种新的布局方式,比起传统布局方式更加灵活，但在PC端有些属性只兼容到IE10,具体参考CanIUse的提供的数据，如果不兼容到老的IE浏览器,可考虑Flex布局。移动端建议直接考虑Flex布局。</p>
-</blockquote>
-<h3 id="二-flex布局图">二、Flex布局图</h3>
-<figure data-type="image" tabindex="1"><img src="https://codermakers.github.io//post-images/1586316913467.png" alt="" loading="lazy"></figure>
-<pre><code class="language-js"> 【注意点】:
-    1、设置Flex布局后,子元素的float、clear和vertical-align属性将失效。
-    2、flex-basis为子项目设置固定宽度,如200px，默认值auto
-    3、flex-grow属性定义项目的放大比例，默认为0，负数无效。
-    4、flex-shrink属性定义了项目的缩小比例,默认为1，负数无效。
-    5、flex-flow：row nowrap(默认)
-    6、align-self：定义单个子项目对齐方式。
-    7、flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后2个选项可选。
-    8、flex:1默认占满剩余空间。
-</code></pre>
-<h3 id="三-flex布局的应用场景">三、Flex布局的应用场景</h3>
-<ul>
-<li>4.1 垂直居中</li>
-</ul>
-<pre><code class="language-css">/*方式1*/
-.flex { display: flex;  justify-content: center; align-items: center; }
-
-/*方式2*/
-.flex { display: flex；}
-.item { margin: auto; }
-</code></pre>
-<ul>
-<li>4.2 在css布局预先定义一些class类,使用时直接加。</li>
-</ul>
-<pre><code class="language-css">.d-flex{
-  display: flex;
-}
-.d-inline-flex{
-  display: inline-flex;
-}
-.flex-row{
-  flex-direction: row;
-}
-.flex-column{
-  flex-direction: column;
-}
-
-.justify-content-start{
-  justify-content: flex-start;
-}
-.justify-content-end{
-  justify-content: flex-end;
-}
-.justify-content-center{
-  justify-content: center;
-}
-
-.justify-content-between{
-  justify-content: space-between;
-}
-.justify-content-around{
-  justify-content: space-around;
-}
-.justify-content-evenly{
-  justify-content: space-evenly;
-}
-
-.align-items-start{
-  align-items: flex-start;
-}
-.align-items-end{
-  align-items: flex-end;
-}
-.align-items-center{
-  align-items: center;
-}
-.align-items-baseline{
-  align-items: baseline;
-}
-.align-items-stretch{
-  align-items: stretch;
-}
-
-.flex-nowrap{
-  flex-wrap: nowrap;
-}
-.flex-wrap{
-  flex-wrap: wrap;
-}
-
-.flex-1{
-  flex: 1;
-}
-.flex-2{
-  flex: 2;
-}
-
-.align-content-start{
-  align-content: flex-start;
-}
-.align-content-end{
-  align-content: flex-end;
-}
-.align-content-center{
-  align-content: center;
-}
-.align-content-around{
-  align-content: space-around;
-}
-.align-content-stretch{
-  align-content: stretch;
-}
-
-.order-0{
-  order:0
-}
-.order-1{
-  order: 1;
-}
-.order-2{
-  order:2
-}
-.order-3{
-  order:3
-}
-.order-4{
-  order: 4;
-}
-.order-5{
-  order:5
-}
-.order-6{
-  order:6
-}
-.order-7{
-  order:7
-}
-
-</code></pre>
-<h3 id="五-flex布局实现骰子练习题实现如下图所示的骰子">五、Flex布局实现骰子练习题:实现如下图所示的骰子</h3>
-<figure data-type="image" tabindex="2"><img src="https://codermakers.github.io//post-images/1586319853891.png" alt="" loading="lazy"></figure>
-<pre><code class="language-html">&lt;!-- 参考代码如下 --&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;style&gt;
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      .container {
-        height: 600px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .touzi {
-        width: 110px;
-        height: 110px;
-        padding: 5px;
-        margin: 10px;
-        border: 1px solid #000;
-        border-radius: 5px;
-        background-color: #e7e7e7;
-      }
-
-      .dot {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background-color: #000;
-        border-radius: 50%;
-      }
-
-      /* 1点 */
-      .first-face {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      /* 2点 */
-      .second-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .second-face .dot:nth-child(2) {
-        align-self: flex-end;
-      }
-
-      /* 3点 */
-      .third-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .third-face .dot:nth-child(2) {
-        align-self: center;
-      }
-      .third-face .dot:nth-child(3) {
-        align-self: flex-end;
-      }
-
-      /* 4点 */
-      .fourth-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .fourth-face .column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      /* 5点 */
-      .fifth-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .fifth-face .column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .fifth-face .column:nth-child(2) {
-        justify-content: center;
-      }
-
-      /* 6点 */
-      .sixth-face {
-        display: flex;
-        justify-content: space-between;
-      }
-      .sixth-face .column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-    &lt;/style&gt;
-  &lt;/head&gt;
-
-  &lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-      &lt;!-- 1点 --&gt;
-      &lt;div class=&quot;touzi first-face&quot;&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;!-- 2点 --&gt;
-      &lt;div class=&quot;touzi second-face&quot;&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;!-- 3点 --&gt;
-      &lt;div class=&quot;touzi third-face&quot;&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;!-- 4点 --&gt;
-      &lt;div class=&quot;touzi fourth-face&quot;&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-
-      &lt;!-- 5点 --&gt;
-      &lt;div class=&quot;touzi fifth-face&quot;&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;!-- 6点 --&gt;
-      &lt;div class=&quot;touzi sixth-face&quot;&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;column&quot;&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-          &lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h3 id="五-参考链接">五、参考链接</h3>
-<pre><code class="language-js">1、阮一峰Flex 布局教程  https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
-2、A Complete Guide to Flexbox：https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-basics
-3、Flex布局在线调试网站：https://the-echoplex.net/flexyboxes/
 </code></pre>
 ]]></content>
     </entry>
