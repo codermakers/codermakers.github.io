@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Git 高级命令 (动画演示性学习) | CoderMakers</title>
-<link rel="shortcut icon" href="https://codermakers.github.io//favicon.ico?v=1588865226914">
+<link rel="shortcut icon" href="https://codermakers.github.io//favicon.ico?v=1588867808183">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://codermakers.github.io//styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -102,7 +102,7 @@
 <h3 id="二-可视化git命令">二、可视化Git命令</h3>
 <ul>
 <li>
-<p>git merge<br>
+<p>git merge(合并)<br>
 <img src="https://codermakers.github.io//post-images/1588861188889.gif" alt="" loading="lazy"><br>
 <img src="https://codermakers.github.io//post-images/1588862390288.gif" alt="" loading="lazy"></p>
 <p>区别:<br>
@@ -110,14 +110,21 @@
 2、 git merge(-no-ff) 如果我们在当前分支上提交了要合并的分支没有的更改，git将执行。使用No-fast-foward 合并,No-fast-foward合并，Git在活动分支上创建一个新的合并提交。提交的父提交指向活动分支和要合并的分支！</p>
 </li>
 <li>
-<p>git fetch<br>
+<p>git fetch(拉取)<br>
 <img src="https://codermakers.github.io//post-images/1588865216737.gif" alt="" loading="lazy"></p>
 </li>
 <li>
-<p>git pull<br>
+<p>git pull(拉取+合并)<br>
 <img src="https://codermakers.github.io//post-images/1588864944732.gif" alt="" loading="lazy"></p>
 </li>
 </ul>
+<p>区别：git pull = git fetch + git merge</p>
+<ul>
+<li>git reset<br>
+<img src="https://codermakers.github.io//post-images/1588865726420.gif" alt="" loading="lazy"><br>
+<img src="https://codermakers.github.io//post-images/1588865734228.gif" alt="" loading="lazy"></li>
+</ul>
+<p>区别：soft reset 只是将内容回滚到暂存区,工作区内容并未变化，hard reset相当于不保留提交已有的修改，直接将当前分支的状态恢复到某个特定提交下，暂存中或者工作区的内容不复存在。</p>
 
                 </div>
             </article>
